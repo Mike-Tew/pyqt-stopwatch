@@ -19,16 +19,22 @@ class Stopwatch(qtw.QWidget):
         self.layout().addWidget(self.display_label, 0, 0, 1, 3)
 
         self.start_button = qtw.QPushButton("START")
-        self.start_button.clicked.connect(self.show_text)
+        self.start_button.clicked.connect(self._on_start)
         self.layout().addWidget(self.start_button, 1, 0)
 
-        self.stop_button = qtw.QPushButton("STOP")
+        self.stop_button = qtw.QPushButton("STOP", clicked=self._on_stop)
         self.layout().addWidget(self.stop_button, 1, 1)
 
         self.reset_button = qtw.QPushButton("RESET")
         self.layout().addWidget(self.reset_button, 1, 2)
 
-    def show_text(self):
+    def _on_start(self):
         print("Got em")
         self.elapsed_time = time()
         print(self.elapsed_time)
+
+    def _on_stop(self):
+        print("stopping")
+
+    def _on_reset(self):
+        pass
