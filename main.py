@@ -13,6 +13,15 @@ class MainWindow(qtw.QMainWindow):
 
         self.setWindowTitle("Stopwatch")
 
+        # Menu Bar
+        menu_bar = self.menuBar()
+        file_menu = menu_bar.addMenu("File")
+        open_action = file_menu.addAction("Open", self.test_method)
+        save_action = file_menu.addAction("Save")
+        help_menu = menu_bar.addMenu("Help")
+        about_menu = menu_bar.addMenu("About")
+
+        # Central Widget
         widget = qtw.QWidget()
         widget.setLayout(qtw.QHBoxLayout())
 
@@ -22,7 +31,13 @@ class MainWindow(qtw.QMainWindow):
         widget.layout().addWidget(self.sw2)
         self.setCentralWidget(widget)
 
+        # Status Bar
+        self.statusBar().showMessage("GUI Activated")
+
         self.show()
+
+    def test_method(self):
+        print("Test method.")
 
 
 if __name__ == "__main__":
