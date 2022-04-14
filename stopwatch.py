@@ -15,19 +15,23 @@ class Stopwatch(qtw.QWidget):
 
         self.setLayout(qtw.QGridLayout())
 
+        self.close_button = qtw.QPushButton("X", clicked=self.deleteLater)
+        # self.close_button
+        self.layout().addWidget(self.close_button, 0, 2)
         self.display_label = qtw.QLabel("00:00.00")
         self.display_label.setFont(qtg.QFont("Helvetica", 30))
-        self.layout().addWidget(self.display_label, 0, 0, 1, 3)
+
+        self.layout().addWidget(self.display_label, 1, 0, 1, 3)
 
         self.start_button = qtw.QPushButton("START")
         self.start_button.clicked.connect(self._on_start)
-        self.layout().addWidget(self.start_button, 1, 0)
+        self.layout().addWidget(self.start_button, 2, 0)
 
         self.stop_button = qtw.QPushButton("STOP", clicked=self._on_stop)
-        self.layout().addWidget(self.stop_button, 1, 1)
+        self.layout().addWidget(self.stop_button, 2, 1)
 
         self.reset_button = qtw.QPushButton("RESET", clicked=self._on_reset)
-        self.layout().addWidget(self.reset_button, 1, 2)
+        self.layout().addWidget(self.reset_button, 2, 2)
 
         # Timer
         self.timer = qtc.QTimer(self)
