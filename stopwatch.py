@@ -12,7 +12,6 @@ class Stopwatch(qtw.QWidget):
         self.current_time = 0
         self.paused_time = 0
         self.total_time = 0
-        self.is_running = False
 
         self.setLayout(qtw.QGridLayout())
 
@@ -39,14 +38,13 @@ class Stopwatch(qtw.QWidget):
         self.stop_button.setEnabled(True)
         self.reset_button.setEnabled(True)
         self.epoch = time()
-        self.timer.start(100)
+        self.timer.start(10)
 
     def _on_stop(self):
         self.timer.stop()
         self.start_button.setEnabled(True)
         self.stop_button.setEnabled(False)
         self.paused_time = self.total_time
-        # self.show_time()
 
     def _on_reset(self):
         self.timer.stop()

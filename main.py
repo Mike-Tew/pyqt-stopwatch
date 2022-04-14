@@ -16,28 +16,24 @@ class MainWindow(qtw.QMainWindow):
         # Menu Bar
         menu_bar = self.menuBar()
         file_menu = menu_bar.addMenu("File")
-        open_action = file_menu.addAction("Open", self.test_method)
-        save_action = file_menu.addAction("Save")
-        help_menu = menu_bar.addMenu("Help")
-        about_menu = menu_bar.addMenu("About")
+        save_icon = self.style().standardIcon(qtw.QStyle.SP_TitleBarMenuButton)
+        file_menu.addAction(save_icon, "Add Timer", self.add_timer)
+        file_menu.addAction("Exit", self.close)
 
         # Central Widget
-        widget = qtw.QWidget()
-        widget.setLayout(qtw.QHBoxLayout())
-
-        self.sw1 = Stopwatch()
-        widget.layout().addWidget(self.sw1)
-        self.sw2 = Stopwatch()
-        widget.layout().addWidget(self.sw2)
-        self.setCentralWidget(widget)
+        self.widget = qtw.QWidget()
+        self.widget.setLayout(qtw.QHBoxLayout())
+        self.setCentralWidget(self.widget)
+        self.widget.layout().addWidget(Stopwatch())
 
         # Status Bar
-        self.statusBar().showMessage("GUI Activated")
-
+        self.statusBar().showMessage("Stopwatch Added")
         self.show()
 
-    def test_method(self):
-        print("Test method.")
+    def add_timer(self):
+        self.widget.layout().addWidget(Stopwatch())
+        self.statusBar().showMessage("Stopwatch Added")
+
 
 
 if __name__ == "__main__":
