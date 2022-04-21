@@ -15,13 +15,9 @@ class Stopwatch(qtw.QWidget):
 
         self.setLayout(qtw.QGridLayout())
 
-        self.close_button = qtw.QPushButton("X", clicked=self.deleteLater)
-        close_icon = self.style().standardIcon(qtw.QStyle.SP_MessageBoxCritical)
-        self.close_button.setIcon(close_icon)
-        self.layout().addWidget(self.close_button, 0, 2)
-
         self.display_label = qtw.QLabel("00:00.00")
         self.display_label.setFont(qtg.QFont("Helvetica", 30))
+        self.display_label.setAlignment(qtc.Qt.AlignCenter)
 
         self.layout().addWidget(self.display_label, 1, 0, 1, 3)
 
@@ -43,8 +39,12 @@ class Stopwatch(qtw.QWidget):
         self.reset_button.setEnabled(False)
         self.layout().addWidget(self.reset_button, 2, 2)
 
-        # self.setFixedSize(self.size())
-        self.setFixedSize(300, 200)
+        self.close_button = qtw.QPushButton(clicked=self.deleteLater)
+        close_icon = self.style().standardIcon(qtw.QStyle.SP_MessageBoxCritical)
+        self.close_button.setIcon(close_icon)
+        self.layout().addWidget(self.close_button, 2, 3)
+
+        self.setFixedSize(350, 200)
 
         # Timer
         self.timer = qtc.QTimer(self)
