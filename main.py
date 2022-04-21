@@ -22,7 +22,7 @@ class MainWindow(qtw.QMainWindow):
 
         # Central Widget
         self.widget = qtw.QWidget()
-        self.widget.setLayout(qtw.QHBoxLayout())
+        self.widget.setLayout(qtw.QVBoxLayout())
         self.setCentralWidget(self.widget)
         self.widget.layout().addWidget(Stopwatch())
 
