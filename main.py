@@ -16,7 +16,7 @@ class MainWindow(qtw.QMainWindow):
         # Menu Bar
         menu_bar = self.menuBar()
         file_menu = menu_bar.addMenu("File")
-        save_icon = self.style().standardIcon(qtw.QStyle.SP_TitleBarMenuButton)
+        save_icon = self.style().standardIcon(qtw.QStyle.SP_TitleBarNormalButton)
         file_menu.addAction(save_icon, "Add Timer", self.add_timer)
         file_menu.addAction("Exit", self.close)
 
@@ -33,7 +33,6 @@ class MainWindow(qtw.QMainWindow):
     def add_timer(self):
         self.widget.layout().addWidget(Stopwatch())
         self.statusBar().showMessage("Stopwatch Added")
-
 
 
 if __name__ == "__main__":

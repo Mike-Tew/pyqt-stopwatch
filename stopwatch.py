@@ -18,33 +18,32 @@ class Stopwatch(qtw.QWidget):
         self.display_label = qtw.QLabel("00:00.00")
         self.display_label.setFont(qtg.QFont("Helvetica", 30))
         self.display_label.setAlignment(qtc.Qt.AlignCenter)
-
-        self.layout().addWidget(self.display_label, 1, 0, 1, 3)
+        self.layout().addWidget(self.display_label, 0, 0, 1, 4)
 
         self.start_button = qtw.QPushButton("START", clicked=self._on_start)
         self.start_button.clicked.connect(self._on_start)
         start_icon = self.style().standardIcon(qtw.QStyle.SP_MediaPlay)
         self.start_button.setIcon(start_icon)
-        self.layout().addWidget(self.start_button, 2, 0)
+        self.layout().addWidget(self.start_button, 1, 0)
 
         self.pause_button = qtw.QPushButton("PAUSE", clicked=self._on_pause)
         pause_icon = self.style().standardIcon(qtw.QStyle.SP_MediaPause)
         self.pause_button.setIcon(pause_icon)
         self.pause_button.setEnabled(False)
-        self.layout().addWidget(self.pause_button, 2, 1)
+        self.layout().addWidget(self.pause_button, 1, 1)
 
         self.reset_button = qtw.QPushButton("RESET", clicked=self._on_reset)
         reset_icon = self.style().standardIcon(qtw.QStyle.SP_BrowserReload)
         self.reset_button.setIcon(reset_icon)
         self.reset_button.setEnabled(False)
-        self.layout().addWidget(self.reset_button, 2, 2)
+        self.layout().addWidget(self.reset_button, 1, 2)
 
         self.close_button = qtw.QPushButton(clicked=self.deleteLater)
         close_icon = self.style().standardIcon(qtw.QStyle.SP_MessageBoxCritical)
         self.close_button.setIcon(close_icon)
-        self.layout().addWidget(self.close_button, 2, 3)
+        self.layout().addWidget(self.close_button, 1, 3)
 
-        self.setFixedSize(350, 200)
+        self.setFixedSize(350, 175)
 
         # Timer
         self.timer = qtc.QTimer(self)
