@@ -1,8 +1,8 @@
 import sys
 
-from PyQt5 import QtWidgets as qtw
-from PyQt5 import QtGui as qtg
 from PyQt5 import QtCore as qtc
+from PyQt5 import QtGui as qtg
+from PyQt5 import QtWidgets as qtw
 
 from stopwatch import Stopwatch
 
@@ -24,15 +24,19 @@ class MainWindow(qtw.QMainWindow):
         self.widget = qtw.QWidget()
         self.widget.setLayout(qtw.QVBoxLayout())
         self.setCentralWidget(self.widget)
-        self.widget.layout().addWidget(Stopwatch())
+        self.widget.layout().addWidget(Stopwatch(self.resize_gui))
 
         # Status Bar
         self.statusBar().showMessage("Stopwatch Added")
         self.show()
 
     def add_timer(self):
-        self.widget.layout().addWidget(Stopwatch())
+        self.widget.layout().addWidget(Stopwatch(self.resize_gui))
         self.statusBar().showMessage("Stopwatch Added")
+        self.resize_gui()
+
+    def resize_gui(self):
+        self.setFixedSize(375, 175 * (len(self.widget.children()) - 1))
 
 
 if __name__ == "__main__":

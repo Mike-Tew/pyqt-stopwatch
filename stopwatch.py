@@ -1,13 +1,16 @@
 from time import time
 
-from PyQt5 import QtWidgets as qtw
-from PyQt5 import QtGui as qtg
 from PyQt5 import QtCore as qtc
+from PyQt5 import QtGui as qtg
+from PyQt5 import QtWidgets as qtw
 
 
 class Stopwatch(qtw.QWidget):
-    def __init__(self):
+    resize_signal = qtc.pyqtSignal()
+
+    def __init__(self, resize_gui):
         super().__init__()
+        self.resize_signal.connect(resize_gui)
 
         self.current_time = 0
         self.paused_time = 0
@@ -38,7 +41,7 @@ class Stopwatch(qtw.QWidget):
         self.reset_button.setEnabled(False)
         self.layout().addWidget(self.reset_button, 1, 2)
 
-        self.close_button = qtw.QPushButton(clicked=self.deleteLater)
+        self.close_button = qtw.QPushButton(clicked=self._on_delete)
         close_icon = self.style().standardIcon(qtw.QStyle.SP_MessageBoxCritical)
         self.close_button.setIcon(close_icon)
         self.layout().addWidget(self.close_button, 1, 3)
@@ -71,6 +74,10 @@ class Stopwatch(qtw.QWidget):
         self.paused_time = 0
         self.total_time = 0
         self.display_label.setText("00:00.00")
+
+    def _on_delete(self):
+        self.deleteLater()
+        self.resize_signal.emit()
 
     def show_time(self):
         self.current_time = time() - self.epoch
